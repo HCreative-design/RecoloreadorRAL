@@ -11,7 +11,7 @@ def cargar_colores_ral(archivo):
     colores = []
     with open(archivo, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
-        next(reader, None)  # Salta encabezado
+        next(reader, None)
         for row in reader:
             if len(row) >= 5:
                 codigo, nombre, r, g, b = row
@@ -37,6 +37,7 @@ class RecoloreadorRALApp:
         self.mascara = None
         self.colores_ral = cargar_colores_ral("ral_colores.csv")
         self.build_ui()
+        self.cargar_imagen()  # 👉 Lanza el selector automáticamente
 
     def build_ui(self):
         btn_cargar = tk.Button(self.root, text="Cargar imagen", command=self.cargar_imagen)
